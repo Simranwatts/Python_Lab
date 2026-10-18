@@ -1,65 +1,44 @@
+
 contacts = {}
-def add_contact():
-    name = input("Enter name: ")
-    phone = input("Enter phone number: ")
-    contacts[name] = phone
-    print("Contact added successfully.")
 
-def view_contacts():
-    if not contacts:
-        print("No contacts available.")
-        return
-    print("\nContacts:")
-    for name, phone in contacts.items():
-        print(name, ":", phone)
+while True:
+    print("\n1.Add  2.View  3.Search  4.Update  5.Delete  6.Exit")
+    ch = input("Enter choice: ")
 
-def search_contact():
-    name = input("Enter name to search: ")
-    if name in contacts:
-        print("Phone number:", contacts[name])
-    else:
-        print("Contact not found.")
+    if ch == "1":
+        name = input("Name: ")
+        contacts[name] = input("Phone: ")
+        print("Contact saved.")
 
-def update_contact():
-    name = input("Enter name to update: ")
-    if name in contacts:
-        phone = input("Enter new phone number: ")
-        contacts[name] = phone
-        print("Contact updated successfully.")
-    else:
-        print("Contact not found.")
+    elif ch == "2":
+        for n, p in contacts.items():
+            print(n, ":", p)
+        if not contacts:
+            print("No contacts.")
 
-def delete_contact():
-    name = input("Enter name to delete: ")
-    if name in contacts:
-        del contacts[name]
-        print("Contact deleted successfully.")
-    else:
-        print("Contact not found.")
+    elif ch == "3":
+        name = input("Search name: ")
+        print(contacts.get(name, "Contact not found."))
 
-def main():
-    while True:
-        print("\n--- Contact Directory ---")
-        print("1. Add Contact")
-        print("2. View Contacts")
-        print("3. Search Contact")
-        print("4. Update Contact")
-        print("5. Delete Contact")
-        print("6. Exit")
-        choice = input("Enter your choice: ")
-        if choice == "1":
-            add_contact()
-        elif choice == "2":
-            view_contacts()
-        elif choice == "3":
-            search_contact()
-        elif choice == "4":
-            update_contact()
-        elif choice == "5":
-            delete_contact()
-        elif choice == "6":
-            print("Exiting program...")
-            break
+    elif ch == "4":
+        name = input("Update name: ")
+        if name in contacts:
+            contacts[name] = input("New phone: ")
+            print("Contact updated.")
         else:
-            print("Invalid choice.")
-main()
+            print("Contact not found.")
+
+    elif ch == "5":
+        name = input("Delete name: ")
+        if name in contacts:
+            del contacts[name]
+            print("Contact deleted.")
+        else:
+            print("Contact not found.")
+
+    elif ch == "6":
+        print("Exiting...")
+        break
+
+    else:
+        print("Invalid choice.")
